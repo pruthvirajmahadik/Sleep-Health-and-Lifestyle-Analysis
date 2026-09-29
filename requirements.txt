@@ -1,0 +1,14 @@
+pandas
+# Data loading, cleaning, filtering, grouping, and data manipulation
+
+numpy
+# Numerical operations and array-based calculations
+
+matplotlib
+# Basic plotting and chart creation
+
+seaborn
+# Statistical visualizations, boxplots, and correlation heatmaps
+
+scipy
+# Statistical tests such as Pearson correlation, ANOVA, and related analysis
