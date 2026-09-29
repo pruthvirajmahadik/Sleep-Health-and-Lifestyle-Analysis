@@ -12,8 +12,7 @@ A Python-based exploratory and statistical analysis of the **Sleep Health and Li
 **Department:** Computer Science and Engineering  
 **Course:** Data Analysis Essentials  
 **Project Type:** Cornerstone Project  
-**Team Number:** _Add team number_  
-**Team Name:** _Add team name_  
+**Team Number:** Team 9  
 **Guide:** Mr. K. Ashok Teja, Assistant Professor, CSE Department
 
 ### Team Members
@@ -25,849 +24,537 @@ A Python-based exploratory and statistical analysis of the **Sleep Health and Li
 | S. Bhavitha | 25B11CS868 |
 | K. Arun Kumar | 26B12CS104 |
 
-> **Note:** Individual responsibilities/contributions should be added here before final submission because they were not specified in the supplied project materials.
+
 
 ---
 
-## 📌 Project Overview
+Overview
 
-Sleep is an essential part of a healthy lifestyle, and sleep patterns can be influenced by multiple lifestyle, occupational, and health-related factors.
+The project implements an end-to-end data-analysis workflow:
 
-This project uses **Python, Pandas, NumPy, Matplotlib, Seaborn, Plotly, SciPy, and Statsmodels** to transform raw sleep-health data into meaningful analytical insights.
-
-The analysis follows an end-to-end workflow:
-
-```text
-Raw Dataset
-     ↓
+CSV Dataset
+    ↓
 Data Loading
-     ↓
-Initial Exploration
-     ↓
-Data Cleaning
-     ↓
-Data Preprocessing
-     ↓
-Exploratory Data Analysis
-     ↓
+    ↓
+Data Inspection
+    ↓
+Data Filtering
+    ↓
+Data Extraction & Feature Engineering
+    ↓
+Data Validation & Cleaning
+    ↓
+Data Aggregation
+    ↓
 Statistical Analysis
-     ↓
-Visualization
-     ↓
-Insights
-     ↓
-Conclusion
-```
-
-The notebook is designed for **Google Colab** and performs setup, initial exploration, data cleaning, EDA, statistical analysis, and an insights summary.
-
----
-
-## 🎯 Problem Statement
-
-Sleep health is affected by several interconnected lifestyle, occupational, and health-related factors. Looking at individual records or performing manual comparisons makes it difficult to identify patterns across multiple variables.
-
-The core problem addressed by this project is:
-
-> **Identify meaningful relationships between lifestyle factors and sleep health using data-driven analysis rather than relying only on assumptions or manual observation.**
-
-### Key Questions
-
-The project investigates:
-
-1. How does stress relate to sleep duration?
-2. Does physical activity relate to sleep quality?
-3. Does occupation influence sleep patterns?
-4. Which groups show different occurrences of sleep disorders?
-5. Can lifestyle and occupational variables be used to explain or predict sleep duration?
-
----
-
-## 🎯 Objectives
-
-The main objectives of the project are:
-
-- Load and inspect the Sleep Health and Lifestyle Dataset.
-- Understand the structure, data types, distributions, and summary statistics.
-- Detect and handle missing values.
-- Remove duplicate records.
-- Clean inconsistent categorical values.
-- Transform the Blood Pressure attribute into separate numerical features.
-- Identify potential numerical outliers using the IQR method.
-- Perform Pandas-based grouping, filtering, sorting, and aggregation.
-- Explore relationships between sleep, stress, physical activity, occupation, and health variables.
-- Create meaningful statistical visualizations.
-- Apply Pearson and Spearman correlation analysis.
-- Compare occupation groups using ANOVA and a Welch's t-test example.
-- Build a linear regression model for Sleep Duration.
-- Interpret the results and identify important patterns.
-- Document conclusions, limitations, and possible future improvements.
-
----
-
-## 🌐 Scope of the Project
-
-The project focuses on exploratory and statistical analysis of sleep and lifestyle data.
-
-### Included
-
-- Demographic analysis
-- Occupation-wise analysis
-- Sleep duration analysis
-- Sleep quality analysis
-- Stress level analysis
-- Physical activity analysis
-- Heart rate analysis
-- Daily steps analysis
-- BMI category analysis
-- Blood pressure feature engineering
-- Sleep disorder prevalence analysis
-- Correlation analysis
-- ANOVA
-- Welch's t-test example
-- Linear regression
-- Static and interactive visualizations
-
-### Not Included
-
-- Medical diagnosis
-- Clinical decision-making
-- Real-time health monitoring
-- A production-grade medical prediction system
-- Causal conclusions from observational relationships
-
----
-
-## ⭐ Significance
-
-The project demonstrates how data analysis can be used to move from raw health and lifestyle records to understandable insights.
-
-Instead of relying only on manual observation, the project combines:
-
-- Data cleaning
-- Exploratory data analysis
-- Statistical testing
-- Data visualization
-- Regression modelling
-
-This makes it easier to study multiple variables together and identify patterns that may not be obvious from individual records.
-
----
-
-# 📊 Dataset
-
-## Dataset Name
-
-**Sleep Health and Lifestyle Dataset**
-
-## Source
-
-The dataset was obtained from **Kaggle**.
-
-**Dataset:** Sleep Health and Lifestyle Dataset by Laksika Tharmalingam
-
-**Kaggle:**  
-https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset
-
-## Dataset Size
-
-The dataset used by this project contains:
-
-- **374 records**
-- **13 original columns**
-- **11 occupation categories**
-- Age range: **27–59 years**
-
-The notebook confirms that the loaded dataset has a shape of **(374, 13)**.
-
----
-
-## Dataset Attributes
-
-| Column | Description |
-|---|---|
-| `Person ID` | Unique identifier for each individual |
-| `Gender` | Gender of the individual |
-| `Age` | Age in years |
-| `Occupation` | Occupation/profession |
-| `Sleep Duration` | Sleep duration in hours |
-| `Quality of Sleep` | Subjective sleep-quality rating |
-| `Physical Activity Level` | Daily physical activity level in minutes |
-| `Stress Level` | Subjective stress-level rating |
-| `BMI Category` | BMI classification |
-| `Blood Pressure` | Blood pressure in systolic/diastolic format |
-| `Heart Rate` | Heart rate in beats per minute |
-| `Daily Steps` | Number of daily steps |
-| `Sleep Disorder` | Sleep disorder category |
-
-### Main Target/Analysis Variables
-
-- **Sleep Duration**
-- **Quality of Sleep**
-- **Sleep Disorder**
-
-### Important Supporting Variables
-
-- Age
-- Gender
-- Occupation
-- Stress Level
-- Physical Activity Level
-- BMI Category
-- Blood Pressure
-- Heart Rate
-- Daily Steps
-
----
-
-# 🛠️ Technology Stack
-
-| Technology | Purpose |
-|---|---|
-| Python | Main programming language |
-| Pandas | Data loading, cleaning, manipulation, grouping and aggregation |
-| NumPy | Numerical operations |
-| Matplotlib | Basic data visualization |
-| Seaborn | Statistical visualizations and heatmaps |
-| Plotly | Interactive visualizations |
-| SciPy | Statistical tests and correlation analysis |
-| Statsmodels | ANOVA and linear regression |
-| Google Colab | Development and execution environment |
-| Jupyter Notebook | Notebook-based analysis |
-
----
-
-# 🧹 Data Loading and Inspection
-
-The notebook loads the CSV using Pandas.
-
-```python
-df = pd.read_csv(filename)
-```
-
-The dataset is initially inspected using operations such as:
-
-```python
-df.shape
-df.dtypes
-df.head()
-df.isna().sum()
-df.describe(include="all")
-```
-
-The loaded dataset has:
-
-```text
-Rows:    374
-Columns: 13
-```
-
-The analysis also examines numerical and categorical variables separately through summary statistics.
-
----
-
-# 🧼 Data Preprocessing
-
-## 1. Missing-Value Handling
-
-The initial dataset contains missing values in the `Sleep Disorder` column.
-
-```text
-Sleep Disorder: 219 missing values
-Total missing cells: 219
-```
-
-For this dataset, a missing `Sleep Disorder` value is interpreted as no diagnosed sleep disorder.
-
-Therefore, missing values are replaced with:
-
-```text
-None
-```
-
-After cleaning:
-
-```text
-None           219
-Sleep Apnea     78
-Insomnia        77
-```
-
-No rows are dropped because of these missing values.
-
----
-
-## 2. Blood Pressure Feature Engineering
-
-The original `Blood Pressure` column contains values such as:
-
-```text
-126/83
-125/80
-140/90
-```
-
-The project splits this field into two numerical features:
-
-- `Systolic_BP`
-- `Diastolic_BP`
-
-Example:
-
-```text
-Blood Pressure    Systolic_BP    Diastolic_BP
-126/83            126            83
-125/80            125            80
-140/90            140            90
-```
-
-This transformation makes blood pressure suitable for numerical analysis.
-
----
-
-## 3. Duplicate Removal
-
-Exact duplicate rows are checked and removed using:
-
-```python
-df_clean = df_clean.drop_duplicates()
-```
-
-Result:
-
-```text
-Before: 374 rows
-After:  374 rows
-Removed: 0 duplicate rows
-```
-
-Therefore, no exact duplicate records were present in the analyzed dataset.
-
----
-
-## 4. Outlier Detection
-
-The project uses the **Interquartile Range (IQR)** method to identify potential outliers.
-
-The analysis checks:
-
-- Age
-- Sleep Duration
-- Quality of Sleep
-- Physical Activity Level
-- Stress Level
-- Heart Rate
-- Daily Steps
-- Systolic BP
-- Diastolic BP
-
-The saved notebook output identifies:
-
-```text
-Heart Rate: 15 potential outliers
-All other checked numerical variables: 0 potential outliers
-```
-
-The identified outliers are **flagged but not automatically removed**, because extreme values may still represent meaningful observations in a health-related dataset.
-
----
-
-## 5. Categorical Data Cleaning
-
-Categorical columns are converted to Pandas `category` dtype for cleaner handling and memory efficiency.
-
-The notebook also standardizes:
-
-```text
-Normal Weight → Normal
-```
-
-in the `BMI Category` field.
-
----
-
-# 📈 Pandas Operations and Data Manipulation
-
-The project demonstrates multiple Pandas techniques, including:
-
-### Data inspection
-
-```python
-df.head()
-df.shape
-df.dtypes
-df.isna().sum()
-df.describe()
-```
-
-### Filtering
-
-Records can be filtered according to occupation, stress level, sleep duration, sleep disorder, and other conditions.
-
-### Grouping
-
-The project uses:
-
-```python
-df_clean.groupby('Occupation')
-```
-
-to calculate occupation-level statistics.
-
-### Aggregation
-
-Metrics such as:
-
-- Mean
-- Count
-- Minimum
-- Maximum
-
-are used for comparisons.
-
-### Sorting
-
-Occupation-level metrics are sorted to compare groups.
-
-### Crosstabulation
-
-Sleep disorder prevalence is calculated using:
-
-```python
-pd.crosstab()
-```
-
-### Transformation
-
-The Blood Pressure field is transformed into:
-
-```text
-Systolic_BP
-Diastolic_BP
-```
-
-### Encoding
-
-Occupation is one-hot encoded for the regression model.
-
----
-
-# 🔎 Exploratory Data Analysis
-
-The project contains several EDA sections.
-
-## 1. Distribution Analysis
-
-The project examines the distributions of:
-
-- Sleep Duration
-- Stress Level
-- Physical Activity Level
-
-This helps understand the overall range and distribution of important variables.
-
----
-
-## 2. Sleep Duration and Quality by Occupation
-
-Box plots are used to compare:
-
-- Sleep Duration by Occupation
-- Quality of Sleep by Occupation
-
-This provides a visual comparison of sleep-related measures across occupational groups.
-
----
-
-## 3. Correlation Heatmap
-
-A Pearson correlation heatmap is created for:
-
-- Sleep Duration
-- Stress Level
-- Physical Activity Level
-- Quality of Sleep
-- Heart Rate
-- Daily Steps
-
-The heatmap helps identify linear relationships between numerical variables.
-
----
-
-## 4. Stress Level vs Sleep Duration
-
-A scatter plot with a linear trend line is used to visualize the relationship between:
-
-```text
-Stress Level
-       ↓
-Sleep Duration
-```
-
----
-
-## 5. Physical Activity vs Quality of Sleep
-
-A regression plot examines the relationship between:
-
-```text
-Physical Activity Level
-       ↓
-Quality of Sleep
-```
-
----
-
-## 6. Occupation-wise Averages
-
-Sorted bar charts compare occupations using:
-
-- Average Sleep Duration
-- Average Stress Level
-- Average Daily Steps
-
----
-
-## 7. Sleep Disorder Prevalence
-
-Stacked bar charts show sleep disorder prevalence:
-
-### By Occupation
-
-The analysis compares the percentage of each occupation group with:
-
-- None
-- Sleep Apnea
-- Insomnia
-
-### By Stress Level
-
-The analysis also compares sleep disorder prevalence across stress-level groups.
-
----
-
-## 8. Interactive Plotly Visualizations
-
-The notebook includes interactive Plotly visualizations, including an interactive box plot for Sleep Duration by Occupation.
-
-These charts allow users to inspect individual observations and occupation-level distributions interactively.
-
----
-
-# 📊 Statistical Analysis
-
-The project goes beyond descriptive analysis and performs statistical analysis.
-
-## Pearson Correlation
-
-Pearson correlation is used to measure linear relationships between numerical variables.
-
-The saved notebook's Pearson correlation matrix reports, among others:
-
-| Variables | Pearson r |
-|---|---:|
-| Sleep Duration – Stress Level | 0.038 |
-| Sleep Duration – Physical Activity | -0.008 |
-| Sleep Duration – Quality of Sleep | -0.031 |
-| Sleep Duration – Heart Rate | -0.073 |
-| Sleep Duration – Daily Steps | -0.019 |
-| Physical Activity – Quality of Sleep | 0.054 |
-
-These values in the saved notebook indicate very weak linear relationships for the listed pairs.
-
-### Important
-
-The direct Pearson/Spearman significance calculation for Stress Level vs Sleep Duration produced `NaN` values in the saved notebook output. Therefore, those significance values should be rerun and verified before using them as final statistical claims.
-
----
-
-## Spearman Correlation
-
-Spearman correlation is also calculated to examine monotonic relationships.
-
-The saved notebook reports:
-
-| Variables | Spearman rho |
-|---|---:|
-| Sleep Duration – Stress Level | 0.037 |
-| Sleep Duration – Physical Activity | 0.004 |
-| Sleep Duration – Quality of Sleep | -0.084 |
-| Physical Activity – Quality of Sleep | 0.075 |
-| Stress Level – Daily Steps | -0.124 |
-
----
-
-# 🧪 ANOVA
-
-One-way ANOVA is used to test whether average values differ across occupation groups.
-
-### Sleep Duration ~ Occupation
-
-```text
-F = 1.411
-p = 0.159112
-```
-
-### Stress Level ~ Occupation
-
-```text
-F = 1.095258
-p = 0.36321
-```
-
-Based on conventional statistical significance thresholds, these saved results do **not** provide statistically significant evidence of occupation-level differences for Sleep Duration or Stress Level at p < 0.05.
-
----
-
-# 🧪 Welch's t-test
-
-A Welch's independent-samples t-test is included as a follow-up example comparing the occupations with the lowest and highest mean Sleep Duration in the saved run.
-
-The notebook reports:
-
-```text
-Sales Representative:
-Mean Sleep Duration = 5.65 hours
-
-Engineer:
-Mean Sleep Duration = 8.88 hours
-```
-
-The saved t-test output returned:
-
-```text
-t = NaN
-p = NaN
-```
-
-Therefore, the difference in means is descriptive in the current saved execution and should not be presented as statistically significant without rerunning and validating the test.
-
----
-
-# 📉 Linear Regression
-
-An Ordinary Least Squares (OLS) regression model is used to predict **Sleep Duration**.
-
-### Predictors
-
-- Stress Level
-- Physical Activity Level
-- Occupation
-
-Occupation is one-hot encoded.
-
-### Model Result
-
-The saved model reports:
-
-```text
-R² = 0.867
-Adjusted R² = 0.862
-F-statistic = 195.4
-Prob(F-statistic) = 1.11e-149
-```
-
-The major coefficients include:
-
-```text
-Stress Level              = -0.3903
-Physical Activity Level   = +0.0070
-```
-
-This indicates that, within this fitted model, higher Stress Level is associated with a lower predicted Sleep Duration, while higher Physical Activity Level is associated with a higher predicted Sleep Duration, after accounting for the included occupation variables.
-
-The model also shows statistically significant coefficients for several occupation categories, while some occupation coefficients are not statistically significant.
-
----
-
-# 📊 Visualizations Included
-
-The project contains visual analysis using:
-
-- Histograms
-- Box plots
-- Bar charts
-- Stacked bar charts
-- Scatter plots
-- Regression plots
-- Pearson correlation heatmap
-- Interactive Plotly box plots
-
-All visualizations are intended to include meaningful titles, axes, and legends.
-
----
-
-# 🔑 Key Insights
-
-The supplied Review-2 presentation describes the following overall project insights:
-
-- Higher stress is associated with shorter sleep duration.
-- Increased physical activity generally relates to better sleep quality.
-- Sleep duration varies across occupational groups.
-- Sleep disorder occurrence differs across occupation and stress-level groups.
-- Stress, physical activity, and occupation can be used together in a regression model for Sleep Duration.
-
-The notebook's saved statistical outputs should be treated as the quantitative source of truth. In particular, the saved correlation matrix shows near-zero Pearson/Spearman correlations for several headline relationships, while the regression model shows a strong negative Stress Level coefficient.
-
-**Before final submission, rerun the notebook and reconcile the qualitative statements in the Review-2 PPT with the final numerical outputs.**
-
----
-
-# ⚠️ Important Statistical Interpretation
-
-This project is based on observational dataset analysis.
-
-Therefore:
-
-> **Correlation or regression association does not automatically imply causation.**
-
-For example, an association between stress and sleep duration does not by itself prove that stress causes changes in sleep duration.
-
-The project should be interpreted as an exploratory analysis of patterns within this dataset.
-
----
-
-# 🧠 Conclusion
-
-The project demonstrates a complete data-analysis workflow from raw data to statistical interpretation.
-
-The analysis includes:
-
-```text
-Dataset Collection
-       ↓
-Data Loading
-       ↓
-Inspection
-       ↓
-Cleaning
-       ↓
-Feature Engineering
-       ↓
-EDA
-       ↓
-Statistical Analysis
-       ↓
-Visualization
-       ↓
-Interpretation
-       ↓
-Conclusion
-```
-
-The analysis shows that sleep health can be studied through a combination of lifestyle, occupational, and health-related variables. Regression analysis provides a quantitative model for Sleep Duration using Stress Level, Physical Activity Level, and Occupation.
-
-The project also demonstrates how Pandas, visualization libraries, statistical testing, and regression can work together to turn structured data into interpretable findings.
-
----
-
-# ⚠️ Limitations
-
-1. The dataset contains only 374 analyzed records.
-2. The dataset represents a limited set of demographic, lifestyle, occupational, and health variables.
-3. The analysis is observational and cannot establish causation.
-4. Sleep Disorder contains 219 missing values that are interpreted as `"None"` based on the dataset's intended meaning.
-5. The dataset contains potential Heart Rate outliers that were flagged but retained.
-6. Some statistical outputs in the saved notebook, including the direct Stress–Sleep Pearson/Spearman significance calculation and Welch's t-test, returned `NaN` and should be rerun before being used as final inferential claims.
-7. The regression model reports a high R², but its diagnostic output indicates potential modelling concerns, including a relatively large condition number.
-8. The project does not provide clinical diagnosis or medical recommendations.
-
----
-
-# 🚀 Future Improvements
-
-Possible future extensions include:
-
-- Analyze Sleep Quality as an ordinal outcome.
-- Study BMI Category and Gender as additional stratification variables.
-- Build a classification model for Sleep Disorder.
-- Compare multiple machine-learning algorithms.
-- Perform cross-validation.
-- Add model diagnostics.
-- Investigate interactions between stress and physical activity.
-- Develop an interactive dashboard.
-- Use a larger and more diverse dataset.
-- Validate findings on an independent dataset.
-
----
-
-# 📂 Repository Structure
-
-Recommended GitHub structure:
-
-```text
-Sleep-Health-and-Lifestyle-Analysis/
-│
-├── README.md
-├── requirements.txt
-│
-├── data/
-│   └── Sleep_health_and_lifestyle_dataset.csv
-│
-├── notebooks/
-│   └── Sleep_Health_and_Lifestyle_Analysis.ipynb
-│
-├── presentations/
-│   ├── Review-1-Presentation.pptx
-│   └── Review-2-Presentation.pptx
-│
-└── results/
-    └── findings.md
-```
-
----
-
-# ⚙️ Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/<your-username>/Sleep-Health-and-Lifestyle-Analysis.git
-cd Sleep-Health-and-Lifestyle-Analysis
-```
-
-Create a virtual environment:
-
-### Windows
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-### Linux/macOS
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-# 📦 Requirements
-
-The project uses:
-
-```text
-numpy
+    ↓
+Data Visualization
+    ↓
+Results & Interpretation
+
+The analysis is implemented in a Jupyter Notebook designed to run in Google Colab.
+
+Features
+Load a CSV dataset interactively in Google Colab
+Inspect dataset dimensions, data types, missing values, and descriptive statistics
+Select and validate the required dataset columns
+Convert numeric fields to appropriate numeric types
+Filter records using sleep-duration and stress-level conditions
+Extract systolic and diastolic blood pressure from the Blood Pressure field
+Create Age_Group and Sleep_Category features
+Standardize inconsistent categorical values
+Handle missing values according to the notebook's defined rules
+Remove exact duplicate rows and duplicate Person ID records
+Detect and remove values outside the defined valid ranges
+Aggregate sleep, stress, and activity metrics by occupation
+Compare groups using pivot tables and crosstabulations
+Calculate Pearson correlations
+Perform Pearson correlation significance tests
+Perform one-way ANOVA across occupation groups
+Perform a chi-square test between sleep disorder and BMI category
+Fit a simple linear regression between stress level and sleep duration
+Generate statistical visualizations using Matplotlib and Seaborn
+Produce automatically generated textual interpretations from the calculated results
+Technologies
+Technology	Usage
+Python	Main programming language
+Pandas	Data loading, cleaning, transformation, grouping, and aggregation
+NumPy	Numerical operations and data cleaning
+Matplotlib	Data visualization
+Seaborn	Statistical plots and visualizations
+SciPy	Statistical tests, correlations, and linear regression
+Google Colab	Primary execution environment
+Jupyter Notebook	Notebook format and interactive development
+Dataset
+
+The supplied dataset is:
+
+Sleep_Health_and_lifestyle_dataset_MESSY_v2.csv
+Original Dataset Structure
+
+The CSV contains 396 rows and 13 columns.
+
+The columns are:
+
+Column	Purpose
+Person ID	Identifier for an individual record
+Gender	Gender value
+Age	Age
+Occupation	Occupation category
+Sleep Duration	Sleep duration
+Quality of Sleep	Sleep-quality value
+Physical Activity Level	Physical activity level
+Stress Level	Stress-level value
+BMI Category	BMI category
+Blood Pressure	Blood pressure represented as text
+Heart Rate	Heart rate
+Daily Steps	Daily step count
+Sleep Disorder	Sleep-disorder category
+
+The supplied CSV intentionally contains inconsistent and missing values, making it suitable for the cleaning and validation workflow implemented in the notebook.
+
+Prerequisites
+
+The project requires:
+
+Python 3.x
+Pandas
+NumPy
+Matplotlib
+Seaborn
+SciPy
+Google Colab or a Jupyter-compatible environment
+
+The project does not include a requirements.txt file, so dependencies must be installed separately if they are not already available in the execution environment.
+
+Dependencies
 pandas
+numpy
 matplotlib
 seaborn
-plotly
 scipy
-statsmodels
-jupyter
-```
 
-Google Colab already provides many of these libraries, and the notebook also installs Plotly, Seaborn, SciPy, and Statsmodels when required.
+Google Colab provides the notebook environment used by the project and includes the google.colab file-upload functionality used in the notebook.
 
----
+Installation and Setup
+Google Colab
+
+The notebook is designed to run interactively in Google Colab.
+
+Open:
+Sleep_Health_and_Lifestyle_Analysis (2).ipynb
+Run the first cells in order.
+When the file-upload cell appears, select:
+Sleep_Health_and_lifestyle_dataset_MESSY_v2.csv
+Continue executing the notebook cells sequentially.
+
+The notebook automatically obtains the uploaded filename:
+
+from google.colab import files
+
+uploaded = files.upload()
+filename = list(uploaded.keys())[0]
+df = pd.read_csv(filename)
+Local Python/Jupyter Environment
+
+The notebook also documents an alternative approach for a non-Colab environment:
+
+df = pd.read_csv("your_file_name.csv")
+
+The CSV should be accessible from the path supplied to pd.read_csv().
+
+Usage
+
+Run the notebook from top to bottom.
+
+The notebook is organized into eight stages:
+
+Stage	Description
+1	Data Loading & Reading
+2	Data Acquisition & Filtering
+3	Data Extraction
+4	Data Validation & Cleaning
+5	Data Aggregation & Representation
+6	Data Analysis
+7	Data Visualization
+8	Results & Interpretation
+
+In Google Colab, the notebook can be executed sequentially using Runtime → Run all, or individual cells can be executed with Shift + Enter.
+
+Data Processing
+Column Selection
+
+The notebook keeps the 13 expected source columns:
+
+columns = [
+    'Person ID',
+    'Gender',
+    'Age',
+    'Occupation',
+    'Sleep Duration',
+    'Quality of Sleep',
+    'Physical Activity Level',
+    'Stress Level',
+    'BMI Category',
+    'Blood Pressure',
+    'Heart Rate',
+    'Daily Steps',
+    'Sleep Disorder'
+]
+
+Completely empty rows are removed.
+
+Numeric Conversion
+
+The following fields are converted to numeric values, with invalid values converted to missing values:
+
+Age
+Sleep Duration
+Quality of Sleep
+Physical Activity Level
+Stress Level
+Heart Rate
+Daily Steps
+Blood Pressure Extraction
+
+The text-based Blood Pressure field is split into two numerical features:
+
+Systolic_BP
+Diastolic_BP
+
+For example:
+
+Blood Pressure    Systolic_BP    Diastolic_BP
+160/100           160            100
+120/80            120            80
+Derived Features
+
+The notebook creates:
+
+Age_Group
+Sleep_Category
+
+Age_Group uses these categories:
+
+18-29
+30-39
+40-49
+50-59
+60+
+
+Sleep_Category uses these categories:
+
+Short (6h or less)
+Normal (6-8h)
+Long (over 8h)
+Categorical Cleaning
+
+The notebook standardizes:
+
+Leading and trailing whitespace
+Gender capitalization and abbreviations
+Occupation capitalization
+BMI category capitalization
+Normal Weight → Normal
+Sleep-disorder capitalization
+
+Gender abbreviations are converted as follows:
+
+M → Male
+F → Female
+
+Missing Sleep Disorder values are replaced with:
+
+None
+
+This is an assumption explicitly made by the notebook for this dataset.
+
+Range Validation
+
+The notebook validates numerical values against the following ranges:
+
+Variable	Accepted Range
+Age	18–100
+Sleep Duration	2–14
+Quality of Sleep	1–10
+Physical Activity Level	0–300
+Stress Level	1–10
+Heart Rate	40–150
+Daily Steps	0–40,000
+Systolic_BP	70–250
+Diastolic_BP	40–150
+
+Values outside these ranges are converted to missing values.
+
+If either blood-pressure component is invalid, both Systolic_BP and Diastolic_BP are cleared.
+
+Duplicate Removal
+
+Two duplicate-removal operations are performed:
+
+df = df.drop_duplicates()
+df = df.drop_duplicates(subset='Person ID')
+
+For the supplied dataset:
+
+Original rows:        396
+Rows after cleaning:  370
+Rows removed:          26
+
+The notebook's saved execution reports 370 records used from the original 396 records.
+
+Remaining missing values are not automatically filled after validation. Subsequent calculations therefore operate on the available values.
+
+Data Aggregation
+
+The notebook creates summaries including:
+
+Occupation Summary
+
+For each occupation, it calculates:
+
+Average Sleep Duration
+Average Stress Level
+Average Daily Steps
+Number of people
+Occupation and Gender
+
+A pivot table compares average sleep duration across:
+
+Occupation × Gender
+BMI and Sleep Disorder
+
+A crosstabulation compares:
+
+BMI Category × Sleep Disorder
+Gender and BMI
+
+Average sleep duration and stress level are also grouped by:
+
+Gender × BMI Category
+Statistical Analysis
+Correlation Analysis
+
+The notebook calculates a correlation matrix for:
+
+Sleep Duration
+Quality of Sleep
+Stress Level
+Physical Activity Level
+Heart Rate
+Daily Steps
+
+The saved notebook execution reports:
+
+Relationship	Pearson correlation
+Sleep Duration – Stress Level	0.07
+Sleep Duration – Quality of Sleep	-0.16
+Sleep Duration – Physical Activity Level	-0.00
+Sleep Duration – Heart Rate	-0.00
+Sleep Duration – Daily Steps	-0.03
+Physical Activity Level – Quality of Sleep	0.03
+Pearson Tests
+
+The notebook directly tests two relationships:
+
+Stress Level ↔ Sleep Duration
+Physical Activity Level ↔ Quality of Sleep
+
+The saved execution reports:
+
+Stress vs Sleep Duration
+r = 0.07
+p = 0.2237
+
+Physical Activity vs Sleep Quality
+r = 0.03
+p = 0.6427
+
+The notebook's generated interpretation therefore reports no statistically reliable relationship for either tested pair at the 0.05 significance level.
+
+ANOVA
+
+A one-way ANOVA tests whether sleep duration differs across occupation groups.
+
+Only occupation groups containing at least 10 records are included.
+
+The saved execution reports:
+
+p = 0.2086
+Chi-Square Test
+
+A chi-square test examines the relationship between:
+
+Sleep Disorder
+BMI Category
+
+The saved execution reports:
+
+p = 0.5137
+Simple Linear Regression
+
+A simple linear regression estimates the relationship between:
+
+Stress Level → Sleep Duration
+
+The saved execution reports:
+
+Slope:      0.05 hours per stress point
+R-squared:  0.01
+
+The model therefore explains approximately 1% of the observed variation in sleep duration in the saved execution.
+
+Visualizations
+
+The notebook generates the following visualizations:
+
+Distributions
+
+Histograms are generated for:
+
+Sleep Duration
+Stress Level
+Physical Activity Level
+Sleep Duration by Occupation
+
+A Seaborn box plot compares sleep-duration distributions across occupations.
+
+Correlation Heatmap
+
+A heatmap displays correlations among the selected numerical variables.
+
+Relationship Plots
+
+Regression plots visualize:
+
+Stress Level vs Sleep Duration
+Physical Activity Level vs Quality of Sleep
+Occupation Stress Levels
+
+A horizontal bar chart displays average stress level by occupation.
+
+Sleep Disorders by Occupation
+
+A stacked percentage bar chart displays sleep-disorder categories by occupation.
+
+Results
+
+For the supplied dataset and the saved notebook execution:
+
+370 of 396 records remain after the notebook's cleaning and duplicate-removal workflow.
+Stress level and sleep duration have a Pearson correlation of approximately 0.07 with p = 0.2237.
+Physical activity and sleep quality have a Pearson correlation of approximately 0.03 with p = 0.6427.
+The occupation-based ANOVA for sleep duration reports p = 0.2086.
+The chi-square test between sleep disorder and BMI category reports p = 0.5137.
+The simple stress-to-sleep regression has a slope of approximately 0.05 hours per stress point and an R² of approximately 0.01.
+In the saved occupation summary, the average sleep duration ranges from 5.65 hours for Sales Representatives to 7.12 hours for Engineers among the represented occupation groups.
+
+These results describe the supplied dataset and should not be interpreted as causal or clinical conclusions.
+
+Project Structure
+
+The supplied project files currently consist of:
+
+.
+├── README.md
+├── Sleep_Health_and_Lifestyle_Analysis (2).ipynb
+└── Sleep_Health_and_lifestyle_dataset_MESSY_v2.csv
+
+No separate application source modules, configuration files, shell scripts, dependency lockfiles, or test suite are included in the supplied project files.
+
+Development Workflow
+
+The notebook follows a sequential data-analysis workflow:
+
+Load the CSV file.
+Preserve a copy of the original dataset.
+Inspect its structure and missing values.
+Select the required columns.
+Convert numeric fields.
+Filter and inspect records.
+Extract blood-pressure components.
+Create age and sleep-duration groups.
+Normalize categorical values.
+Validate numerical ranges.
+Remove duplicate records.
+Recreate derived groups after cleaning.
+Generate aggregated summaries.
+Run statistical analyses.
+Generate visualizations.
+Produce automated result interpretations.
+
+Because the notebook is sequential, cells should generally be executed from top to bottom.
+
+Reproducibility
+
+To reproduce the current analysis:
+
+Use the supplied notebook.
+Use the supplied CSV dataset.
+Run the notebook cells sequentially.
+Upload the CSV when prompted by the Colab file-upload cell.
+Review the generated tables, statistical outputs, plots, and interpretation section.
+
+The statistical outputs can change if the dataset is modified or if the cleaning rules are changed.
+
+Testing and Validation
+
+No automated test suite is included in the supplied project.
+
+Validation is performed within the notebook through:
+
+Dataset shape inspection
+Data-type inspection
+Missing-value counts
+Descriptive statistics
+Numeric conversion
+Range validation
+Duplicate detection
+Aggregated summaries
+Statistical tests
+Generated visualizations
+Automatically calculated result interpretations
+Limitations
+The analysis is based on a single supplied CSV dataset containing 396 original records.
+Cleaning reduces the working dataset to 370 records.
+Missing values remain in several fields after cleaning.
+Missing Sleep Disorder values are interpreted as None, which is an explicit assumption in the notebook.
+Values outside predefined ranges are converted to missing values rather than being investigated individually.
+Occupation groups with fewer than 10 records are excluded from the ANOVA.
+The data is observational, so statistical associations should not be interpreted as proof of causation.
+The notebook itself notes that the dataset may be synthetic, so the results should not automatically be treated as real-world health evidence.
+No clinical diagnosis or medical recommendation is produced by the project.
+The simple regression between stress and sleep duration explains only approximately 1% of the observed variation in the saved execution.
+Important Interpretation Note
+
+The project is intended for data-analysis and educational purposes.
+
+A statistical relationship, whether observed through correlation, regression, ANOVA, or another test, does not by itself establish a causal relationship between the variables.
+
+The generated findings should therefore be interpreted within the scope and limitations of the supplied dataset and preprocessing workflow.
+
+Future Development
+
+The current notebook does not define a separate production application or deployment workflow. Possible extensions that are directly suggested by the notebook include:
+
+Analyze sleep quality as an outcome.
+Examine BMI and gender as additional group variables.
+Build a classification model for sleep disorders.
+Compare multiple machine-learning algorithms.
+Apply cross-validation.
+Add additional model diagnostics.
+Investigate interactions between stress and physical activity.
+Develop an interactive dashboard.
+Evaluate the workflow on a larger dataset.
+Validate findings against an independent dataset.
+
+
+
+Files
+File	Description
+Sleep_Health_and_Lifestyle_Analysis (2).ipynb	Main analysis notebook containing the complete data-processing, statistical-analysis, visualization, and interpretation workflow
+Sleep_Health_and_lifestyle_dataset_MESSY_v2.csv	Input dataset used by the notebook
+README.md	Project documentation
 
 # ▶️ Running the Project
 
@@ -891,53 +578,6 @@ Then run all cells sequentially.
 
 ---
 
-# 📑 Project Deliverables
-
-The GitHub repository should contain:
-
-- [x] Project title
-- [x] Problem statement
-- [x] Objectives
-- [x] Scope
-- [x] Significance
-- [x] Dataset description
-- [x] Dataset source
-- [x] Data loading
-- [x] Data inspection
-- [x] Missing-value handling
-- [x] Duplicate removal
-- [x] Data cleaning
-- [x] Feature engineering
-- [x] Pandas operations
-- [x] Grouping and aggregation
-- [x] Statistical analysis
-- [x] Data visualization
-- [x] Conclusions
-- [x] Limitations
-- [ ] Team number and team name
-- [ ] Individual responsibilities
-- [ ] `requirements.txt`
-- [ ] Dataset CSV in repository
-- [ ] Review-1 PPT
-- [ ] Review-2 PPT
-
----
-
-# 📊 Review Presentations
-
-The project presentations should be stored in:
-
-```text
-presentations/
-```
-
-Recommended files:
-
-```text
-Review-1-Presentation.pptx
-Review-2-Presentation.pptx
-```
-
 The supplied Review-2 presentation covers:
 
 - Problem Understanding
@@ -956,22 +596,23 @@ The supplied Review-2 presentation covers:
 
 # 👨‍💻 Team Contributions
 
-Add the actual contribution of each member before final submission.
+
 
 | Team Member | Roll Number | Contribution |
 |---|---|---|
-| M. Pruthviraj Srinivas | 25B11CS534 | _Add responsibility_ |
-| E. Tejeshwanth | 25B11CS254 | _Add responsibility_ |
-| S. Bhavitha | 25B11CS868 | _Add responsibility_ |
-| K. Arun Kumar | 26B12CS104 | _Add responsibility_ |
+| M. Pruthviraj Srinivas | 25B11CS534 | Team lead|
 
-All team members should understand the complete project because the repository will be used for project evaluation and viva.
+| E. Tejeshwanth | 25B11CS254 |Data & Tech Lead|
+
+| S. Bhavitha | 25B11CS868 | Implementation Lead|
+
+| K. Arun Kumar | 26B12CS104 |QA & Strartegy|
 
 ---
 
 # 🔗 Resources
 
-- **Dataset:** https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset
+- **Dataset:** sleep-health-and-lifestyle-dataset
 - **Notebook:** `notebooks/Sleep_Health_and_Lifestyle_Analysis.ipynb`
 - **Review Presentations:** `presentations/`
 
