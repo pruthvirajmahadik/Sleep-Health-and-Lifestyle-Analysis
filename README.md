@@ -600,13 +600,13 @@ The supplied Review-2 presentation covers:
 
 | Team Member | Roll Number | Contribution |
 |---|---|---|
-| M. Pruthviraj Srinivas | 25B11CS534 |
+| M. Pruthviraj Srinivas | 25B11CS534 |Loading, Reading, Filtering and  aggregation |
 
-| E. Tejeshwanth | 25B11CS254 |
+| E. Tejeshwanth | 25B11CS254 |Extraction and Cleaning|
 
-| S. Bhavitha | 25B11CS868 | 
+| S. Bhavitha | 25B11CS868 | Visualization and Advanced Statistical Analysis|
 
-| K. Arun Kumar | 26B12CS104 |
+| K. Arun Kumar | 26B12CS104 | Results and Interpretation|
 
 ---
 
