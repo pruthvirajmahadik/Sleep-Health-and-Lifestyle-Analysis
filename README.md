@@ -600,13 +600,13 @@ The supplied Review-2 presentation covers:
 
 | Team Member | Roll Number | Contribution |
 |---|---|---|
-| M. Pruthviraj Srinivas | 25B11CS534 | Team lead|
+| M. Pruthviraj Srinivas | 25B11CS534 |
 
-| E. Tejeshwanth | 25B11CS254 |Data & Tech Lead|
+| E. Tejeshwanth | 25B11CS254 |
 
-| S. Bhavitha | 25B11CS868 | Implementation Lead|
+| S. Bhavitha | 25B11CS868 | 
 
-| K. Arun Kumar | 26B12CS104 |QA & Strartegy|
+| K. Arun Kumar | 26B12CS104 |
 
 ---
 
